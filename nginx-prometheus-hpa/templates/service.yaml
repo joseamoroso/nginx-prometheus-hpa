@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "nginx-prometheus-hpa.fullname" . }}
+  labels:
+    {{- include "nginx-prometheus-hpa.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 8080
+      protocol: TCP
+      name: http
+    - port: {{ .Values.service.metricsPort }}
+      targetPort: 8000
+      protocol: TCP
+      name: metrics
+  selector:
+    {{- include "nginx-prometheus-hpa.selectorLabels" . | nindent 4 }}

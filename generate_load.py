@@ -35,11 +35,11 @@ def generate_inter_arrival_times(arrival_rate: int,
 # Set up API calls...
 
 # Configure inter arrival time and arrival rate semantics.
-arrival_rate = 20  # Average arrival rate of 20 requests per second
-decay_rate = 0.2  # Decay rate of 0.2 requests per second
-duration = 120  # Duration of the load test in seconds
+arrival_rate = 80  # Average arrival rate of 20 requests per second
+decay_rate = 0.001  # Decay rate of 0.2 requests per second
+duration = 500  # Duration of the load test in seconds
 
-host, port, path = ('127.0.0.1', 18080, '')
+host, port, path = ('localhost', 80, 'heavywork')
 
 # Override defaults if command-line arguments are provided
 if len(sys.argv) > 3:

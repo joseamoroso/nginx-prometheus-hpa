@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: nginx-prometheus-hpa
+  labels:
+    release: nginx-prometheus-hpa
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nginx-prometheus-hpa
+  endpoints:
+  - targetPort: metrics
+    path: /
+    interval: 5s
